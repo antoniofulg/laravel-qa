@@ -20,24 +20,29 @@
                         <div class="media">
                             <div class="d-flex flex-column counters">
                                 <div class="vote">
-                                    <strong>{{ $question->votes }}</strong> {{ Str::plural('vote', $question->votes) }}
-                                </div>
+                                    <strong>{{ $question->votes }}</strong> {{ str_plural('vote', $question->votes) }}
+                                </div>                            
                                 <div class="status {{ $question->status }}">
-                                    <strong>{{ $question->answers }}</strong> {{ Str::plural('answer', $question->answers) }}
-                                </div>
+                                    <strong>{{ $question->answers }}</strong> {{ str_plural('answer', $question->answers) }}
+                                </div>                            
                                 <div class="view">
-                                    {{ $question->views . ' ' . Str::plural('view', $question->views) }}
-                                </div>
+                                    {{ $question->views . " " . str_plural('view', $question->views) }}
+                                </div>                            
                             </div>
                             <div class="media-body">
-                                <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
+                                    <div class="ml-auto">
+                                        <a href="{{ route('questions.edit', $question->id) }}" class="btn btn-sm btn-outline-info">Edit</a>
+                                    </div>
+                                </div>
                                 <p class="lead">
-                                    Asked by
-                                    <a href="{{ $question->user->url }}">{{$question->user->name }}</a>
-                                    <small class="text-mmuted">{{ $question->created_date }}</small>
+                                    Asked by 
+                                    <a href="{{ $question->user->url }}">{{ $question->user->name }}</a> 
+                                    <small class="text-muted">{{ $question->created_date }}</small>
                                 </p>
-                                {{ Str::limit($question->body, 250) }}
-                            </div>
+                                {{ str_limit($question->body, 250) }}
+                            </div>                        
                         </div>
                         <hr>
                     @endforeach
