@@ -11603,8 +11603,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Answer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Answer */ "./resources/js/components/Answer.vue");
-/* harmony import */ var _NewAnswer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewAnswer */ "./resources/js/components/NewAnswer.vue");
+/* harmony import */ var _Answer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Answer.vue */ "./resources/js/components/Answer.vue");
+/* harmony import */ var _NewAnswer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewAnswer.vue */ "./resources/js/components/NewAnswer.vue");
 /* harmony import */ var _mixins_highlight__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/highlight */ "./resources/js/mixins/highlight.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -11614,6 +11614,7 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+//
 //
 //
 //
@@ -11649,6 +11650,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       questionId: this.question.id,
       count: this.question.answers_count,
       answers: [],
+      answerIds: [],
       nextUrl: null
     };
   },
@@ -11672,14 +11674,22 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     fetch: function fetch(endpoint) {
       var _this2 = this;
 
+      this.answerIds = [];
       axios.get(endpoint).then(function (_ref) {
         var _this2$answers;
 
         var data = _ref.data;
+        _this2.answerIds = data.data.map(function (a) {
+          return a.id;
+        });
 
         (_this2$answers = _this2.answers).push.apply(_this2$answers, _toConsumableArray(data.data));
 
         _this2.nextUrl = data.next_page_url;
+      }).then(function () {
+        _this2.answerIds.forEach(function (id) {
+          _this2.highlight("answer-".concat(id));
+        });
       });
     }
   },
@@ -11689,8 +11699,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   },
   components: {
-    Answer: _Answer__WEBPACK_IMPORTED_MODULE_0__["default"],
-    NewAnswer: _NewAnswer__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Answer: _Answer_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    NewAnswer: _NewAnswer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
