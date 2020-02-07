@@ -62,7 +62,7 @@
 import Vote from './Vote'
 import UserInfo from './UserInfo'
 import modification from '../mixins/modification'
-import Prism from 'prismjs'
+
 import MEditor from './MEditor'
 
 export default {
@@ -103,10 +103,7 @@ export default {
 
         restoreFromCache () {
             this.body = this.beforeEditCache.body;
-            this.title = this.beforeEditCache.title;
-            const el = this.$refs.bodyHtml;
-            if (el) Prism.highlightAllUnder(el);
-            
+            this.title = this.beforeEditCache.title;            
         },
 
         payload () {
