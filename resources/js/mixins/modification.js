@@ -1,7 +1,12 @@
 import highlight from './highlight'
+import Vote from '../components/Vote'
+import UserInfo from '../components/UserInfo'
+import MEditor from '../components/MEditor'
 
 export default {
     mixins: [highlight],
+
+    components: { Vote, UserInfo, MEditor },
 
     data() {
         return {
