@@ -11,9 +11,9 @@
 |
 */
 
+Auth::routes(['verify' => true]);
+Route::view('/{any}', 'spa')->where('any', '.*');
 Route::get('/', 'QuestionsController@index');
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
