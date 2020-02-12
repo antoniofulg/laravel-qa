@@ -78,11 +78,15 @@
 
     <!-- Scripts -->
     <script>
-        window.Auth = {!! json_encode([
+        window.Auth = @json([
             'signedIn' => Auth::check(),
             'user' => Auth::user(),
-            'url' => route('login')
-        ]) !!}
+        ])
+        
+        window.Urls = @json([
+            'api' => url('/api'),
+            'login' => route('login')
+        ])
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
