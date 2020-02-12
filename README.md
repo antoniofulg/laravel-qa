@@ -7,6 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## 
+## Application builded to learn about RESTful API and Single Page Application with Laravel & VueJs.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Application builted for learn the VueJS integration in a Laravel project, assisted by **Eding Muhamad Saprudin**, in your 
+**Laravel and Vue.js - Fullstack Web Development (2019)** class.
