@@ -4,7 +4,7 @@
     },
 
     accept (user, answer) {
-        return user.id === answer.question.user.id;
+        return user.id === answer.question_user_id;
     },
 
     deleteQuestion (user, question) {
