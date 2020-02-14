@@ -40,25 +40,37 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        loading: false
+        loading: false,
+        interceptor: null
     },
 
     created () {
-        axios.interceptors.request.use((config) => {
-            this.loading = true;
-            return config;
-        }, (error) => {
-            this.loading = false;
-            return Promise.reject(error);
-        });
-        
-        axios.interceptors.response.use((response) => {
-            this.loading = false;
-            return response;
-        }, (error) => {
-            this.loading = false;
-            return Promise.reject(error);
-        });
+        this.enableInterceptor();
     },
+
+    methods: {
+        enableInterceptor () {
+            axios.interceptors.request.use((config) => {
+                this.loading = true;
+                return config;
+            }, (error) => {
+                this.loading = false;
+                return Promise.reject(error);
+            });
+            
+            axios.interceptors.response.use((response) => {
+                this.loading = false;
+                return response;
+            }, (error) => {
+                this.loading = false;
+                return Promise.reject(error);
+            });
+        },
+
+        disableInterceptor () {
+            axios.interceptors.request.eject(this.interceptor);
+        }
+    },
+
     router
 });
